@@ -1,0 +1,255 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+}
+
+/* NAVBAR PERSONALIZADA*/
+.navbar-custom {
+    background: #2c3e50;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+/* MENÚ ESCRITORIO */
+.menu-nav {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-nav li {
+    margin-left: 20px;
+}
+
+.menu-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.menu-nav a:hover {
+    background: #34495e;
+}
+
+/* HAMBURGUESA*/
+.hamburguesa {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1100; /* Por encima del menú móvil */
+}
+
+.hamburguesa span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 3px 0;
+    transition: 0.4s;
+    border-radius: 2px;
+}
+
+/* TARJETAS DE RESULTADOS */
+.tarjeta-coctel {
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.tarjeta-coctel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+}
+
+.tarjeta-coctel img {
+    height: 250px;
+    object-fit: cover;
+}
+
+/* FOOTER */
+footer {
+    margin-top: auto;
+}
+
+/* MEDIA QUERIES (MÓVIL) */
+@media (max-width: 768px) {
+    /* Mostrar icono hamburguesa */
+    .hamburguesa {
+        display: flex;
+    }
+    
+    /* Estilo del menú móvil (oculto por defecto) */
+    .menu-nav {
+        position: absolute;
+        top: 100%; /* Justo debajo del header */
+        left: 0;
+        width: 100%;
+        background: #2c3e50;
+        flex-direction: column;
+        align-items: center;
+        max-height: 0;
+        overflow: hidden; /* Oculta el contenido */
+        transition: max-height 0.4s ease-out;
+        z-index: 1000;
+    }
+    
+    /* Clase para abrir el menú */
+    .menu-nav.activo {
+        max-height: 300px; /* Altura suficiente para los items */
+        box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+    }
+    
+    .menu-nav li {
+        margin: 15px 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .menu-nav a {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    /* Animación de la X en la hamburguesa */
+    .hamburguesa.activo span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburguesa.activo span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburguesa.activo span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+
+
+body.dark-mode {
+    background-color: #121212; /* Fondo muy oscuro */
+    color: #e0e0e0;            /* Texto claro */
+}
+
+/* Tarjetas en modo oscuro */
+body.dark-mode .tarjeta-coctel {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+body.dark-mode .tarjeta-coctel .card-title {
+    color: #fff;
+}
+
+body.dark-mode .tarjeta-coctel .text-muted {
+    color: #aaa
+}
+
+/* Inputs y Formularios en modo oscuro */
+body.dark-mode .form-control {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: white;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #bbb;
+}
+
+/* Modal en modo oscuro */
+body.dark-mode .modal-content {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+body.dark-mode .modal-header,
+body.dark-mode .modal-footer {
+    border-color: #333;
+}
+
+body.dark-mode .btn-close {
+    filter: invert(1); /* Invierte el color de la X de cerrar a blanco */
+}
+
+/* Ajuste para la lista de ingredientes en el modal */
+body.dark-mode .list-group-item {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+/* SKELETON LOADER */
+.skeleton {
+    background: #e0e0e0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: translateX(-100%);
+    animation: brillo 1.5s infinite;
+}
+
+@keyframes brillo {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Modo oscuro para el Skeleton en concreto */
+body.dark-mode .skeleton {
+    background: #2d2d2d;
+}
+body.dark-mode .skeleton::after {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+
+/* BOTÓN DE FAVORITOS (Corazón) */
+.btn-favorito {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+    color: #ccc; /* Gris por defecto */
+}
+
+.btn-favorito:hover {
+    transform: scale(1.2);
+}
+
+.btn-favorito.es-favorito {
+    color: #e74c3c; /* Rojo cuando está activo */
+}
